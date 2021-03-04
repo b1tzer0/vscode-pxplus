@@ -1,0 +1,80 @@
+{
+    "If Statement": {
+        "prefix": "if",
+        "body": [
+            "if (${1:condition}) {",
+            "\t$TM_SELECTED_TEXT",
+            "}"
+        ],
+        "description": "If Statement"
+    },
+    "If-Else Statement": {
+        "prefix": "ifelse",
+        "body": [
+            "if (${1:condition}) {",
+            "\t$TM_SELECTED_TEXT",
+            "} else {",
+            "\t",
+            "}"
+        ],
+        "description": "If-Else Statement"
+    },
+    "While Statement": {
+		"prefix": "while",
+		"body": [
+			"WHILE (${1:condition})",
+			"\t$TM_SELECTED_TEXT",
+			"WEND"
+		],
+		"description": "While Statement"
+	},
+    "Try-Catch Statement": {
+		"prefix": "trycatch",
+		"body": [
+			"TRY",
+			"\t$TM_SELECTED_TEXT",
+			"CATCH",
+			"\t",
+			"END_TRY"
+		],
+		"description": "Try-Catch Statement"
+	},
+    "Try-Catch-Finally Statement": {
+		"prefix": "trycatchfinally",
+		"body": [
+			"TRY",
+			"\t$TM_SELECTED_TEXT",
+			"CATCH",
+			"\t",
+            "FINALLY",
+			"\t",
+			"END_TRY"
+		],
+		"description": "Try-Catch-Finally Statement"
+	},
+    "Repeat-Until Statement": {
+		"prefix": "repeat",
+		"body": [
+			"REPEAT",
+			"\t$TM_SELECTED_TEXT",
+			"UNTIL (${1:condition})"
+		],
+		"description": "Repeat-Until Statement"
+	},
+    "Repeat-Data Statement": {
+		"prefix": "repeatdata",
+		"body": [
+			"REPEAT DATA TO ${1:file} END,ERR=${2:stmtref}"
+		],
+		"description": "Repeat-Data Statement"
+	},
+    "For-Next Statement": {
+		"prefix": "fornext",
+		"body": [
+			"FOR ${1:numVarName}=${2:numInitialValue} TO ${3:numLastValue} STEP ${4:1}",
+            "\t$TM_SELECTED_TEXT",
+            "NEXT"
+		],
+		"description": "Repeat-Data Statement"
+	},
+}
