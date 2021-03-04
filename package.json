@@ -20,6 +20,16 @@
             "language": "pxplus",
             "scopeName": "source.pxplus",
             "path": "./syntaxes/pxplus.tmLanguage.json"
-        }]
-    }
+        }],
+        "snippets": [
+            {
+              "language": "pxplus",
+              "path": "./snippets/pxplus.code-snippets"
+            }
+          ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/b1tzer0/vscode-pxplus.git"
+      }
 }
