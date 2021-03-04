@@ -1,0 +1,25 @@
+{
+    "name": "pxplus",
+    "displayName": "pxplus",
+    "description": "PXPlus Language Extension for VSCode",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.53.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "pxplus",
+            "aliases": ["PXPlus", "pxplus"],
+            "extensions": [".pvx",".pvc",".pvs",".pvt",".pvp"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "pxplus",
+            "scopeName": "source.pxplus",
+            "path": "./syntaxes/pxplus.tmLanguage.json"
+        }]
+    }
+}
