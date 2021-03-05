@@ -3,6 +3,13 @@
     "displayName": "pxplus",
     "description": "PXPlus Language Extension for VSCode",
     "version": "0.0.1",
+    "publisher": "b1tzer0",
+    "author": {
+        "email": "b1t_zer0@hotmail.com",
+        "name": "Rick Mathers"
+    },
+    "contributors": [],
+    "keywords": ["pxplus"],
     "engines": {
         "vscode": "^1.53.0"
     },
