@@ -4,19 +4,30 @@ PXPlus Language Extension for VSCode
 I am not affilated with [PVX Plus Technologies Ltd](https://home.pvxplus.com) or Sage Software.
 
 # Version 0.0.1
-Initial Release
+Initial Release - Basic usage of snippits and highlighting. Setup format for help text.
 
 # Installation
 Make sure you have Node.js installed. Then run:
 
-`npm install -g vsce`
+`npm install -g yarn vsce`
 
 # Usage
+To compile the app, run the following commands in the terminal:
+```nodejs
+--To install the needed libraries.
+yarn 
+```
+
+```nodejs
+--To compile the extension, run the below command.
+cd vscode-pxplus
+yarn run package
+```
+
 You can use vsce to easily package the extension:
 
 
 ```nodejs
-cd vscode-pxplus
 vsce package
 pxplus-{version}.vsix generated
 ```
@@ -32,3 +43,5 @@ Once the library becomes a bit more mature I will publish it to the Marketplace.
 
 # Future Development
 Development on this will be driven by the community, if you need a feature please start a discussion topic or contact me.  
+
+I am still looking into the LSP portion of the project, once I get that in place; I will move the help text over to it. 
