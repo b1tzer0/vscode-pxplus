@@ -16,7 +16,7 @@
     "categories": [
         "Programming Languages"
     ],
-    "main": "./dist/extension.js",
+    "main": "./out/extension.js",
     "activationEvents": [
         "onLanguage:pxplus"
     ],
@@ -37,22 +37,26 @@
               "language": "pxplus",
               "path": "./snippets/pxplus.code-snippets"
             }
-          ]
+          ],
+          "configuration":{
+              "title": "PXPlus Configuration",
+              "properties": {
+                  "pxplus.suggest.basic":{
+                        "type":"boolean",
+                        "default": true
+                  }
+              }
+          }
     },
     "repository": {
         "type": "git",
         "url": "https://github.com/b1tzer0/vscode-pxplus.git"
     },
     "scripts": {
-		"vscode:prepublish": "yarn run package",
-		"compile": "webpack",
-		"watch": "webpack --watch",
-		"package": "webpack --mode production --devtool hidden-source-map",
-		"test-compile": "tsc -p ./",
-		"test-watch": "tsc -watch -p ./",
-		"pretest": "yarn run test-compile && yarn run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint . --ext .ts,.tsx",
+		"watch": "tsc -watch -p ./"
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.54.0",

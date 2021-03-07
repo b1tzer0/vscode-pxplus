@@ -21,7 +21,7 @@ yarn
 ```nodejs
 --To compile the extension, run the below command.
 cd vscode-pxplus
-yarn run package
+CTRL+SHIFT+B
 ```
 
 You can use vsce to easily package the extension:
@@ -44,4 +44,4 @@ Once the library becomes a bit more mature I will publish it to the Marketplace.
 # Future Development
 Development on this will be driven by the community, if you need a feature please start a discussion topic or contact me.  
 
-I am still looking into the LSP portion of the project, once I get that in place; I will move the help text over to it. 
+Next is setting up format for a signature help provider.
