@@ -16,10 +16,6 @@ exports.compiletimeconstants = {
     NULL: {},
 };
 exports.keywords = {
-    define: {
-        description: 'Defines a named constant at runtime.',
-        signature: '( string $name , mixed $value [, bool $case_insensitive = false ] ): bool'
-    },
     SETESC: {
         description: "\n 1. Subroutine Interrupt-Handler: SETESC stmtref " +
             "\n 1. Subprogram Interrupt-Handler: SETESC prog_name$" +

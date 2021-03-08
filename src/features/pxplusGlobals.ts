@@ -3,7 +3,21 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 
-export interface IEntry { description?: string; signature?: string; }
+export interface IParameter{
+	parameter: string;
+	description?: string;
+}
+
+export interface ISignature{
+	signature: string;
+	description?: string;
+	parameters: Array<IParameter>
+}
+
+export interface IEntry { 
+	description?: string; 
+	signatures?: Array<ISignature>; 
+}
 export interface IEntries { [name: string]: IEntry; }
 
 export const globalvariables: IEntries = {
@@ -21,10 +35,6 @@ export const compiletimeconstants: IEntries = {
 	},	
 };
 export const keywords: IEntries = {
-	define: {
-		description: 'Defines a named constant at runtime.',
-		signature: '( string $name , mixed $value [, bool $case_insensitive = false ] ): bool'
-	},
 	SETESC:{
 		description:"\n 1. Subroutine Interrupt-Handler: SETESC stmtref " +
 			"\n 1. Subprogram Interrupt-Handler: SETESC prog_name$" +

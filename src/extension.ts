@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 
 // Import the providers.
 import PxPlusHoverProvder from './features/hoverProvider';
+import PxPlusSignatureHelpProvider from './features/signatureHelpProvider';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -14,6 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "pxplus" is now active!');
 
 	context.subscriptions.push(vscode.languages.registerHoverProvider('pxplus', new PxPlusHoverProvder()));
+	context.subscriptions.push(vscode.languages.registerSignatureHelpProvider('pxplus', new PxPlusSignatureHelpProvider(), '(',','));
 
 	// need to set in the extension host as well as the completion provider uses it.
 	vscode.languages.setLanguageConfiguration('pxplus', {

@@ -24,7 +24,7 @@ export default class PvxPlusHoverProvider implements HoverProvider {
 
 		let entry = globalFunctions.globalfunctions[name] || globals.compiletimeconstants[name] || globals.globalvariables[name] || globals.keywords[name];
 		if (entry && entry.description) {
-			let signature = name + (entry.signature || '');
+			//let signature = name + (entry.signatures || '');
 			let contents: MarkdownString[] = [textToMarkdownString(entry.description)];
 			return new Hover(contents, wordRange);
 		}

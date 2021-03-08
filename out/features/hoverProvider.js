@@ -21,7 +21,7 @@ class PvxPlusHoverProvider {
         let name = document.getText(wordRange);
         let entry = globalFunctions.globalfunctions[name] || globals.compiletimeconstants[name] || globals.globalvariables[name] || globals.keywords[name];
         if (entry && entry.description) {
-            let signature = name + (entry.signature || '');
+            //let signature = name + (entry.signatures || '');
             let contents = [markedTextUtil_1.textToMarkdownString(entry.description)];
             return new vscode_1.Hover(contents, wordRange);
         }
