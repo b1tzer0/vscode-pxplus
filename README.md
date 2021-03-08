@@ -4,7 +4,11 @@ PXPlus Language Extension for VSCode
 I am not affilated with [PVX Plus Technologies Ltd](https://home.pvxplus.com) or Sage Software.
 
 # Version 0.0.1
-Initial Release - Basic usage of snippits and highlighting. Setup format for help text.
+Initial Release 
+- Basic usage of snippits 
+- Highlighting 
+- Help text
+- Signature Help
 
 # Installation
 Make sure you have Node.js installed. Then run:
@@ -43,5 +47,3 @@ Once the library becomes a bit more mature I will publish it to the Marketplace.
 
 # Future Development
 Development on this will be driven by the community, if you need a feature please start a discussion topic or contact me.  
-
-Next is setting up format for a signature help provider.
