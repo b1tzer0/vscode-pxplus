@@ -2,7 +2,7 @@
     "name": "pxplus",
     "displayName": "pxplus",
     "description": "PXPlus Language Extension for VSCode",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "b1tzer0",
     "author": {
         "email": "b1t_zer0@hotmail.com",
@@ -11,7 +11,7 @@
     "contributors": [],
     "keywords": ["pxplus"],
     "engines": {
-        "vscode": "^1.53.0"
+        "vscode": "^1.54.0"
     },
     "categories": [
         "Programming Languages"
@@ -23,7 +23,6 @@
     "contributes": {
         "languages": [{
             "id": "pxplus",
-            "aliases": ["PXPlus", "pxplus"],
             "extensions": [".pvx",".pvc",".pvs",".pvt",".pvp"],
             "configuration": "./language-configuration.json"
         }],
@@ -43,20 +42,45 @@
               "properties": {
                   "pxplus.suggest.basic":{
                         "type":"boolean",
-                        "default": true
+                        "default": true,
+                        "description": "Enable basic hover tips and signature helpers."
+                  },
+                  "pxplus.workingDirectory.programs":{
+                    "type":"string",
+                    "description": "Working Directory for you programs",
+                    "default":"C:\\Dev\\Bin\\Programs",
+                    "scope":"window"
+                  },
+                  "pxplus.workingDirectory.tools":{
+                    "type":"string",
+                    "description": "Working Directory for you tools",
+                    "default":"C:\\Dev\\Tools",
+                    "scope":"window"
                   }
               }
-          }
+          },
+          "commands":[
+              {
+                  "category": "PxPlus",
+                  "command": "pxplus.editor",
+                  "title": "PxPlus Editor"
+              }
+          ]
     },
     "repository": {
         "type": "git",
         "url": "https://github.com/b1tzer0/vscode-pxplus.git"
     },
     "scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint . --ext .ts,.tsx",
-		"watch": "tsc -watch -p ./"
+		"vscode:prepublish": "yarn run package",
+		"compile": "webpack",
+		"watch": "webpack --watch",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"test-compile": "tsc -p ./",
+		"test-watch": "tsc -watch -p ./",
+		"pretest": "yarn run test-compile && yarn run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.54.0",
