@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { runEditor } from './commands';
 
 // Import the providers.
 import PxPlusHoverProvder from './features/hoverProvider';
@@ -14,8 +15,11 @@ export function activate(context: vscode.ExtensionContext) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "pxplus" is now active!');
 
+	
 	context.subscriptions.push(vscode.languages.registerHoverProvider('pxplus', new PxPlusHoverProvder()));
 	context.subscriptions.push(vscode.languages.registerSignatureHelpProvider('pxplus', new PxPlusSignatureHelpProvider(), '(',','));
+
+	context.subscriptions.push(vscode.commands.registerCommand('pxplus.editor', runEditor));
 
 	// need to set in the extension host as well as the completion provider uses it.
 	vscode.languages.setLanguageConfiguration('pxplus', {

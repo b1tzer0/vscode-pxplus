@@ -2,8 +2,10 @@
 
 All notable changes to the "pxplus" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [Releases]
 
-## [Unreleased]
+- 0.0.1 - Initial release
 
-- Initial release
+- 0.0.2
+1. Fixed issue where hover tips and signatures would not work outside of the debug environment.
+1. Initial work on executing commands.
