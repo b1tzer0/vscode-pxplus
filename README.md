@@ -3,12 +3,13 @@ PXPlus Language Extension for VSCode
 
 I am not affilated with [PVX Plus Technologies Ltd](https://home.pvxplus.com) or Sage Software.
 
-# Version 0.0.1
+# Version 0.0.3
 Initial Release 
 - Basic usage of snippits 
 - Highlighting 
 - Help text
 - Signature Help
+- Commands - Compile/List
 
 # Installation
 Make sure you have Node.js installed. Then run:
@@ -42,6 +43,13 @@ Click the "..." in the extension marketplace.
 Click "Install from VSIX..."
 
 Point it to the file and click install.
+
+Make sure to go to the extension settings and configure it for your setup.
+
+|Argument  |Value  |
+|---------|---------|
+|%f       |Used to indicate the current file open in your editor.         |
+
 
 Once the library becomes a bit more mature I will publish it to the Marketplace.
 

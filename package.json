@@ -2,7 +2,7 @@
     "name": "pxplus",
     "displayName": "pxplus",
     "description": "PXPlus Language Extension for VSCode",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "publisher": "b1tzer0",
     "author": {
         "email": "b1t_zer0@hotmail.com",
@@ -56,16 +56,31 @@
                     "description": "Working Directory for you tools",
                     "default":"C:\\Dev\\Tools",
                     "scope":"window"
+                  },
+                  "pxplus.commands.cpl":{
+                    "type":"string",
+                    "description": "Compile Command - use %f for current file.",
+                    "default":"",
+                    "scope":"window"
+                  },
+                  "pxplus.commands.lst":{
+                    "type":"string",
+                    "description": "List Command - use %f for current file.",
+                    "default":"",
+                    "scope":"window"
                   }
               }
           },
-          "commands":[
-              {
-                  "category": "PxPlus",
-                  "command": "pxplus.editor",
-                  "title": "PxPlus Editor"
-              }
-          ]
+          "commands":[{
+                "category": "PxPlus",
+                "command": "pxplus.cpl",
+                "title": "Compile"
+            },
+            {
+                "category": "PxPlus",
+                "command": "pxplus.lst",
+                "title": "List"
+            }]
     },
     "repository": {
         "type": "git",
