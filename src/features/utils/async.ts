@@ -103,7 +103,7 @@ export class Throttler<T> {
 export class Delayer<T> {
 
 	public defaultDelay: number;
-	private timeout: NodeJS.Timer | null;
+	private timeout: ReturnType<typeof setTimeout> | null;
 	private completionPromise: Promise<T> | null;
 	private onResolve: ((value: T | PromiseLike<T> | undefined) => void) | null;
 	private task: ITask<T> | null;
@@ -156,7 +156,10 @@ export class Delayer<T> {
 
 	private cancelTimeout(): void {
 		if (this.timeout !== null) {
-			clearTimeout(this.timeout);
+			if (this.timeout) {
+				clearTimeout(this.timeout);
+				this.timeout = null;
+			}
 			this.timeout = null;
 		}
 	}
