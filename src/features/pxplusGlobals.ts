@@ -12,11 +12,16 @@ export interface ISignature{
 	signature: string;
 	description?: string;
 	parameters: Array<IParameter>
+	returns?: string;
+	note?: string;
 }
 
 export interface IEntry { 
 	description?: string; 
 	signatures?: Array<ISignature>; 
+	returns?: string;
+	examples?: any;
+	note?: string;
 }
 export interface IEntries { [name: string]: IEntry; }
 
