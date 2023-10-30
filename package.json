@@ -54,27 +54,32 @@
                     "default": true,
                     "description": "Enable basic hover tips and signature helpers."
                 },
-                "pxplus.workingDirectory.programs": {
-                    "type": "string",
-                    "description": "Working Directory for you programs",
-                    "default": "C:\\Dev\\Bin\\Programs",
-                    "scope": "window"
+                "pxplus.windx.client": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Windx"
                 },
-                "pxplus.workingDirectory.tools": {
+                "pxplus.pxplusDirectory.path": {
                     "type": "string",
-                    "description": "Working Directory for you tools",
-                    "default": "C:\\Dev\\Tools",
-                    "scope": "window"
-                },
-                "pxplus.commands.cpl": {
-                    "type": "string",
-                    "description": "Compile Command - use %f for current file.",
+                    "description": "Path to pxplus.exe (In case of Windx, path to pxplus.exe in Windx folder)",
                     "default": "",
                     "scope": "window"
                 },
-                "pxplus.commands.lst": {
+                "pxplus.pxplusDirectory.program": {
                     "type": "string",
-                    "description": "List Command - use %f for current file.",
+                    "description": "Compile program to run when using Windx pxplus.exe",
+                    "default": "",
+                    "scope": "window"
+                },
+                "pxplus.workingDirectory.source": {
+                    "type": "string",
+                    "description": "Source file directory",
+                    "default": "",
+                    "scope": "window"
+                },
+                "pxplus.workingDirectory.program": {
+                    "type": "string",
+                    "description": "Compiled program directory",
                     "default": "",
                     "scope": "window"
                 }
@@ -85,11 +90,6 @@
                 "category": "PxPlus",
                 "command": "pxplus.cpl",
                 "title": "Compile"
-            },
-            {
-                "category": "PxPlus",
-                "command": "pxplus.lst",
-                "title": "List"
             }
         ]
     },
