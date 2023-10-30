@@ -53,7 +53,7 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Enable basic hover tips and signature helpers."
-                },
+                },           
                 "pxplus.windx.client": {
                     "type": "boolean",
                     "default": false,
