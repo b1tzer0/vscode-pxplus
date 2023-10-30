@@ -61,7 +61,7 @@
                 },
                 "pxplus.pxplusDirectory.path": {
                     "type": "string",
-                    "description": "Path to pxplus.exe (In case of Windx, path to pxplus.exe in Windx folder)",
+                    "description": "Path to pxplus.exe (In case of Windx, path to pxplus.exe and servername etc.)",
                     "default": "",
                     "scope": "window"
                 },
@@ -80,6 +80,12 @@
                 "pxplus.workingDirectory.program": {
                     "type": "string",
                     "description": "Compiled program directory",
+                    "default": "",
+                    "scope": "window"
+                },
+                "pxplus.workingDirectory.errors": {
+                    "type": "string",
+                    "description": "Compile errors log directory",
                     "default": "",
                     "scope": "window"
                 }
