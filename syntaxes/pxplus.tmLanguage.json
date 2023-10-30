@@ -78,6 +78,10 @@
 				{
 					"name": "variable.parameter.prefix.pxplus",
 					"match": "\\b\\w*\\."
+				},
+				{
+					"name": "constant.numeric",
+					"match": "\\b[+-]?\\d+(\\.\\d+)?\\b"
 				}
 			]
 		},
