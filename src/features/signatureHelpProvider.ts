@@ -86,6 +86,8 @@ export default class PxPlusSignatureHelpProvider implements SignatureHelpProvide
 			return null;
 		}
 
+		ident = ident.toUpperCase();
+
 		let entry = pxpplusGlobalFunctions.globalfunctions[ident] || pxpplusGlobals.keywords[ident];
 		if (!entry || !entry.signatures) {
 			return null;

@@ -21,6 +21,7 @@ export default class PvxPlusHoverProvider implements HoverProvider {
 		}
 
 		let name = document.getText(wordRange);
+		name = name.toUpperCase();
 
 		let entry = globalFunctions.globalfunctions[name] || globals.compiletimeconstants[name] || globals.globalvariables[name] || globals.keywords[name];
 		if (entry && entry.description) {

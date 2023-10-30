@@ -2537,5 +2537,78 @@ export const globalfunctions: IEntries = {
 			]
 		}
 	]
+	},
+	"TBL": {
+		"description": "The TBL( ) function converts a string (all characters or all numeric) to the corresponding values set in a given translation table.",
+		"signatures": [
+			{
+				"signature": "(string$, TBL=tbl_stmtref[, ERR=stmtref])",
+				"parameters": [
+					{
+						"parameter": "string$",
+						"description": "String to be translated/replaced (must be all characters or all numeric)."
+					},
+					{
+						"parameter": "tbl_stmtref",
+						"description": "Optional, if your table is embedded in the same statement as the TBL( ) function. If you refer to a program tbl_stmtref, it must contain a conversion table."
+					},
+					{
+						"parameter": "stmtref",
+						"description": "Program line number or statement label to which to transfer control."
+					}
+				]
+			},
+			{
+				"signature": "(string$, tbl_var$[, ERR=stmtref])",
+				"parameters": [
+					{
+						"parameter": "string$",
+						"description": "String to be translated/replaced (must be all characters or all numeric)."
+					},
+					{
+						"parameter": "tbl_var$",
+						"description": "String variable. Contains conversion table to replace elements in the string$. String expression."
+					},
+					{
+						"parameter": "stmtref",
+						"description": "Program line number or statement label to which to transfer control."
+					}
+				]
+			},
+			{
+				"signature": "(position, expr_0[$], expr_1[$], ..., expr_n[$][, ERR=stmtref])",
+				"parameters": [
+					{
+						"parameter": "position",
+						"description": "Determines which expression to use. Positional or numeric expression, range 0 (zero) to n."
+					},
+					{
+						"parameter": "expr_0[$], expr_1[$], ..., expr_n[$]",
+						"description": "List of expressions to be returned. Numeric or string expressions. Restriction: The expressions must all be the same type (i.e. all characters or all numeric)."
+					},
+					{
+						"parameter": "stmtref",
+						"description": "Program line number or statement label to which to transfer control."
+					}
+				]
+			},
+			{
+				"signature": "(var$, compare$, table$)",
+				"parameters": [
+					{
+						"parameter": "var$",
+						"description": "String variable. Contains a string to be translated or replaced."
+					},
+					{
+						"parameter": "compare$",
+						"description": "String table to compare character by character with the value in var$. String expression."
+					},
+					{
+						"parameter": "table$",
+						"description": "Table to use for conversion when a character in the compared value matches the value in var$. String expression."
+					}
+				]
+			}
+		]
 	}
 };
