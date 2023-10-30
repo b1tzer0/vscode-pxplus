@@ -1,26 +1,17 @@
 import * as vscode from 'vscode';
 
 export function runCompiler(context: vscode.ExtensionContext){
-    let cwd = vscode.workspace.getConfiguration('pxplus').get<string>('workingDirectory.programs');
-    let cmd = vscode.workspace.getConfiguration('pxplus').get<string>('commands.cpl');
-	let t = selectTerminal();
+    let pxplusPath = vscode.workspace.getConfiguration('pxplus').get<string>('pxplusDirectory.path');
+    let isWindx = vscode.workspace.getConfiguration('pxplus').get<boolean>('windx.client');
+    
+    // Select a terminal
+    let terminal = selectTerminal();
 
-    t.show();
-    if(cwd){
-        if(cmd === ""){
-            t.sendText('ECHO "You need to configure your compiler command first."');
-            return;
-        }
-        
-        t.sendText("cd" + " " + cwd);
+    // Bring the terminal forward
+    terminal.show();
 
-        cmd = cmd?.replace("%f", vscode.window.activeTextEditor?.document.fileName || "");
-        if(cmd){
-            t.sendText(cmd);
-        }
-    }else{
-        t.sendText('ECHO "You need to configure your working directory first."');
-    }
+    // Send a command to the terminal (as text)
+    terminal.sendText("echo hallo");
 }
 
 function selectTerminal(): vscode.Terminal {
