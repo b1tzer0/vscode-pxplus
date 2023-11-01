@@ -2,32 +2,53 @@ import * as vscode from 'vscode';
 import { exec } from 'child_process';
 const path = require('path');
 
-export function runCompiler(context: vscode.ExtensionContext){
-    let documentFileName = vscode.window.activeTextEditor?.document.fileName;
-    let fileName = path.basename(documentFileName);
-
-    let pxplusPath = vscode.workspace.getConfiguration('pxplus').get<string>('pxplusDirectory.path');
-    let compiler = vscode.workspace.getConfiguration('pxplus').get<string>('pxplusDirectory.program');
-    let isWindx = (vscode.workspace.getConfiguration('pxplus').get<boolean>('windx.client') ?? false);
-
-    let sourceProgram = documentFileName;
-    let compileProgram = vscode.workspace.getConfiguration('pxplus').get<string>('workingDirectory.program') + fileName.replace(/.pxprg$/, '');
-
-    if (isWindx) {
-    //let sourceProgram = vscode.workspace.getConfiguration('pxplus').get<string>('workingDirectory.source') + fileName;
-    //let compileProgram = vscode.workspace.getConfiguration('pxplus').get<string>('workingDirectory.program') + fileName;
+export function runCompiler(context: vscode.ExtensionContext) {
+    const activeTextEditor = vscode.window.activeTextEditor;
+    if (!activeTextEditor) {
+        vscode.window.showErrorMessage('No active text editor found!');
+        return;
     }
 
-    let errorPath = vscode.workspace.getConfiguration('pxplus').get<string>('workingDirectory.errors');
-    
+    const documentFileName = activeTextEditor.document.fileName;
+    const filePath = path.dirname(documentFileName);
+    const fileName = path.basename(documentFileName);
+    const fileNameWithoutExtension = fileName.replace(/.pxprg$/, '');
+
+    const pxplusPath = normalizeToDoubleBackslash(getConfiguration('pxplusDirectory.path'));
+    const compiler = normalizeToSingleBackslash(getConfiguration('pxplusDirectory.program'));
+    const isWindx = getConfiguration('windx.client', 'false') === 'true';
+
+    let sourceProgram = documentFileName;
+    let compileProgramPath = normalizeToSingleBackslash(getConfiguration('workingDirectory.program')).replace("%f", filePath);
+    let compileProgram = path.join(compileProgramPath, fileNameWithoutExtension);
+
+    if (isWindx) {
+        // Adjust sourceProgram and compileProgram here if needed for WindX
+    }
+
+    const errorPath = normalizeToSingleBackslash(getConfiguration('workingDirectory.errors'));
+
     // Select a terminal
-    let terminal = selectTerminal();
+    const terminal = selectTerminal();
 
     // Bring the terminal forward
     terminal.show();
 
     // Send a command to the terminal (as text)
-    terminal.sendText('"' + pxplusPath + ' ' + compiler + ' -arg '+ sourceProgram + ' ' + compileProgram +' '+ errorPath + '"');
+    const command = `& "${pxplusPath}" "${compiler}" -arg "${sourceProgram}" "${compileProgram}" "${errorPath}"`;
+    terminal.sendText(command);
+}
+
+function getConfiguration(key: string, defaultVal: string = ''): string {
+    return vscode.workspace.getConfiguration('pxplus').get<string>(key) ?? defaultVal;
+}
+
+function normalizeToSingleBackslash(path: string): string {
+    return path.replace(/\\\\/g, '\\');
+}
+
+function normalizeToDoubleBackslash(path: string): string {
+    return path.replace(/\\/g, '\\\\');
 }
 
 function selectTerminal(): vscode.Terminal {

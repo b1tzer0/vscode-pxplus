@@ -28,7 +28,8 @@
                     ".pvc",
                     ".pvs",
                     ".pvt",
-                    ".pvp"
+                    ".pvp",
+                    ".pxprg"
                 ],
                 "configuration": "./language-configuration.json"
             }
