@@ -15,11 +15,11 @@ export function runCompiler(context: vscode.ExtensionContext) {
     const fileNameWithoutExtension = fileName.replace(/.pxprg$/, '');
 
     const pxplusPath = normalizeToDoubleBackslash(getConfiguration('pxplusDirectory.path'));
-    const compiler = normalizeToSingleBackslash(getConfiguration('pxplusDirectory.program'));
+    const compiler = normalizeToSingleBackslash(getConfiguration('pxplusDirectory.compiler'));
     const isWindx = getConfiguration('windx.client', 'false') === 'true';
 
     let sourceProgram = documentFileName;
-    let compileProgramPath = normalizeToSingleBackslash(getConfiguration('workingDirectory.program')).replace("%f", filePath);
+    let compileProgramPath = normalizeToSingleBackslash(getConfiguration('workingDirectory.output')).replace("%f", filePath);
     let compileProgram = path.join(compileProgramPath, fileNameWithoutExtension);
 
     if (isWindx) {

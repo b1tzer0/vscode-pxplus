@@ -66,9 +66,9 @@
                     "default": "",
                     "scope": "window"
                 },
-                "pxplus.pxplusDirectory.program": {
+                "pxplus.pxplusDirectory.compiler": {
                     "type": "string",
-                    "description": "Compile program to run when using Windx pxplus.exe",
+                    "description": "Path to the compiler program",
                     "default": "",
                     "scope": "window"
                 },
@@ -78,9 +78,9 @@
                     "default": "",
                     "scope": "window"
                 },
-                "pxplus.workingDirectory.program": {
+                "pxplus.workingDirectory.output": {
                     "type": "string",
-                    "description": "Compiled program directory",
+                    "description": "Compiled program output directory",
                     "default": "",
                     "scope": "window"
                 },
