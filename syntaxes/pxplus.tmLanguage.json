@@ -26,7 +26,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.objects.pxplus",
-					"match": "(?i)\\b(_obj'|GET|SET|EVENT|PROPERTY|DEF CLASS|END DEF|NEW|CREATE|DELETE OBJECT|DROP OBJECT|MERGE OBJECT|OPEN OBJECT)\\b"
+					"match": "(?i)\\b(_obj'|GET|SET|EVENT|PROPERTY|DEF CLASS|END DEF|NEW|CREATE|DELETE OBJECT|DROP OBJECT|MERGE OBJECT|OPEN OBJECT|WHERE|OR)\\b"
 				},
 				{
 					"name": "keyword.control.pxplus",
