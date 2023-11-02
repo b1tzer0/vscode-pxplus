@@ -28,6 +28,7 @@ export function runCompiler(context: vscode.ExtensionContext) {
         let sourcePath = normalizeToSingleBackslash(getConfiguration<string>('workingDirectory.source', ''));
 
         sourceProgram = path.join(sourcePath, fileName);
+        outputProgram = path.join(sourcePath, fileNameWithoutExtension);
     }
 
     const errorPath = normalizeToSingleBackslash(getConfiguration<string>('workingDirectory.errors', ''));
