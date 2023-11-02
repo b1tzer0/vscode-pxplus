@@ -74,13 +74,13 @@
                 },
                 "pxplus.workingDirectory.source": {
                     "type": "string",
-                    "description": "Source file directory",
+                    "description": "Source file directory (Only used for Windx)",
                     "default": "",
                     "scope": "window"
                 },
                 "pxplus.workingDirectory.output": {
                     "type": "string",
-                    "description": "Compiled program output directory",
+                    "description": "Compiled program output directory, use %f for current directory.",
                     "default": "",
                     "scope": "window"
                 },

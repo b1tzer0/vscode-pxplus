@@ -15,15 +15,19 @@ export function runCompiler(context: vscode.ExtensionContext) {
     const fileNameWithoutExtension = fileName.replace(/.pxprg$/, '');
 
     const pxplusPath = normalizeToDoubleBackslash(getConfiguration<string>('pxplusDirectory.path', ''));
-    const compiler = normalizeToSingleBackslash(getConfiguration<string>('pxplusDirectory.compiler', ''));
+    const compilerPath = normalizeToSingleBackslash(getConfiguration<string>('pxplusDirectory.compiler', ''));
     const isWindx = getConfiguration<boolean>('windx.client', false);
 
     let sourceProgram = documentFileName;
-    let compileProgramPath = normalizeToSingleBackslash(getConfiguration<string>('workingDirectory.output', '')).replace("%f", filePath);
-    let compileProgram = path.join(compileProgramPath, fileNameWithoutExtension);
+
+    let outputProgramPath = normalizeToSingleBackslash(getConfiguration<string>('workingDirectory.output', '')).replace("%f", filePath);
+    let outputProgram = path.join(outputProgramPath, fileNameWithoutExtension);
 
     if (isWindx) {
-        // Adjust sourceProgram and compileProgram here if needed for WindX
+        // Adjust sourceProgram and outputProgram here if needed for WindX
+        let sourcePath = normalizeToSingleBackslash(getConfiguration<string>('workingDirectory.source', ''));
+
+        sourceProgram = path.join(sourcePath, fileName);
     }
 
     const errorPath = normalizeToSingleBackslash(getConfiguration<string>('workingDirectory.errors', ''));
@@ -35,9 +39,10 @@ export function runCompiler(context: vscode.ExtensionContext) {
     terminal.show();
 
     // Send a command to the terminal (as text)
-    const command = `& "${pxplusPath}" "${compiler}" -arg "${sourceProgram}" "${compileProgram}" "${errorPath}"`;
+    const command = `& "${pxplusPath}" "${compilerPath}" -arg "${sourceProgram}" "${outputProgram}" "${errorPath}"`;
     terminal.sendText(command);
 }
+
 
 function getConfiguration<T>(key: string, defaultVal: T): T {
     return vscode.workspace.getConfiguration('pxplus').get<T>(key) ?? defaultVal;
