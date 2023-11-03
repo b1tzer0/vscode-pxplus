@@ -2,7 +2,7 @@
     "name": "pxplus",
     "displayName": "pxplus",
     "description": "PXPlus Language Extension for VSCode",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "publisher": "b1tzer0",
     "author": {
         "email": "b1t_zer0@hotmail.com",
@@ -15,6 +15,9 @@
     "engines": {
         "vscode": "^1.83.1"
     },
+    "activationEvents": [
+        "onStartupFinished"
+    ],
     "categories": [
         "Programming Languages"
     ],
