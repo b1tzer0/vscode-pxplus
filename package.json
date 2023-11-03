@@ -86,7 +86,7 @@
                 },
                 "pxplus.workingDirectory.errors": {
                     "type": "string",
-                    "description": "Compile errors log directory",
+                    "description": "Compile errors log directory, use %f for current directory.",
                     "default": "",
                     "scope": "window"
                 },

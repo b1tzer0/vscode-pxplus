@@ -34,7 +34,7 @@ export function runCompiler(context: vscode.ExtensionContext) {
         outputProgram = path.join(sourcePath, fileNameWithoutExtension);
     }
 
-    const errorPath = normalizeToSingleBackslash(getConfiguration<string>('workingDirectory.errors', ''));
+    const errorPath = normalizeToSingleBackslash(getConfiguration<string>('workingDirectory.errors', '')).replace("%f", filePath);
 
     // Select a terminal
     const terminal = selectTerminal();
@@ -43,11 +43,11 @@ export function runCompiler(context: vscode.ExtensionContext) {
     terminal.show();
 
     // Build command for non-WindX
-    const command = `& "${pxplusPath}" "${compilerPath}" -arg "${sourceProgram}" "${outputProgram}" "${errorPath}"`;
+    let command = `& "${pxplusPath}" "${compilerPath}" -arg "${sourceProgram}" "${outputProgram}" "${errorPath}"`;
     
     // Build command for WindX
     if (isWindx) {
-        const command = `& "${pxplusPath}" "${iniPath}" "*ntslave -id=%username% -arg" "${host}" "${compilerPath} -arg "${sourceProgram}" "${outputProgram}" "${errorPath}"" "${port}"`;
+        command = `& "${pxplusPath}" "${iniPath}" "*ntslave -id=%username% -arg" "${host}" "${compilerPath} -arg "${sourceProgram}" "${outputProgram}" "${errorPath}"" "${port}"`;
     }
     // Send a command to the terminal (as text)
     terminal.sendText(command);
