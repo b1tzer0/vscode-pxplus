@@ -57,7 +57,7 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Enable basic hover tips and signature helpers."
-                },
+                },           
                 "pxplus.windx.client": {
                     "type": "boolean",
                     "default": false,
@@ -153,8 +153,6 @@
     "dependencies": {
         "@types/vscode": "^1.83.1",
         "@vscode/test-electron": "^2.3.6",
-        "@vscode/vsce": "^2.21.1",
-        "npm": "^10.2.3",
-        "update": "^0.7.4"
+        "@vscode/vsce": "^2.21.1"
     }
 }
