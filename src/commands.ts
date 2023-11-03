@@ -19,19 +19,18 @@ export function runCompiler(context: vscode.ExtensionContext) {
     const host = normalizeToSingleBackslash(getConfiguration<string>('windx.server', ''));
     const port = normalizeToSingleBackslash(getConfiguration<string>('windx.port', ''));
     const iniPath = normalizeToSingleBackslash(getConfiguration<string>('windx.ini', ''));
+    const sourcePath = normalizeToSingleBackslash(getConfiguration<string>('workingDirectory.source', ''));
     const isWindx = getConfiguration<boolean>('windx.client', false);
 
     let sourceProgram = documentFileName;
 
     let outputProgramPath = normalizeToSingleBackslash(getConfiguration<string>('workingDirectory.output', '')).replace("%f", filePath);
-    let outputProgram = path.join(outputProgramPath, fileNameWithoutExtension);
+    let outputProgram = path.join(sourcePath, fileNameWithoutExtension);
 
     if (isWindx) {
         // Adjust sourceProgram and outputProgram here if needed for WindX
-        let sourcePath = normalizeToSingleBackslash(getConfiguration<string>('workingDirectory.source', ''));
-
         sourceProgram = path.join(sourcePath, fileName);
-        outputProgram = path.join(sourcePath, fileNameWithoutExtension);
+        outputProgram = path.join(outputProgramPath, fileNameWithoutExtension);
     }
 
     const errorPath = normalizeToSingleBackslash(getConfiguration<string>('workingDirectory.errors', '')).replace("%f", filePath);
@@ -47,7 +46,7 @@ export function runCompiler(context: vscode.ExtensionContext) {
     
     // Build command for WindX
     if (isWindx) {
-        command = `& "${pxplusPath}" ${iniPath} *ntslave -id=%username% -arg ${host} "${compilerPath} -arg ${sourceProgram} ${outputProgram} ${errorPath}" ${port}`;
+        command = `& "${pxplusPath}" ${iniPath} *ntslave -id=%username% -arg ${host} "${compilerPath} -arg ${normalizeToSingleForwardSlash(sourceProgram)} ${normalizeToSingleForwardSlash(outputProgram)} ${normalizeToSingleForwardSlash(errorPath)}" ${port}`;
     }
     // Send a command to the terminal (as text)
     terminal.sendText(command);
@@ -64,6 +63,10 @@ function normalizeToSingleBackslash(path: string): string {
 
 function normalizeToDoubleBackslash(path: string): string {
     return path.replace(/\\/g, '\\\\');
+}
+
+function normalizeToSingleForwardSlash(path: string) : string { 
+    return path.replace(/(?<!https?:)\\{1,2}|\/{2,}/g, '/');
 }
 
 function selectTerminal(): vscode.Terminal {
