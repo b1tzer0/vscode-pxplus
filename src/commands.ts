@@ -47,7 +47,7 @@ export function runCompiler(context: vscode.ExtensionContext) {
     
     // Build command for WindX
     if (isWindx) {
-        command = `& "${pxplusPath}" ${iniPath} *ntslave -id=%username% -arg ${host} ${compilerPath} -arg "${sourceProgram} ${outputProgram} ${errorPath}" ${port}`;
+        command = `& "${pxplusPath}" ${iniPath} *ntslave -id=%username% -arg ${host} "${compilerPath} -arg ${sourceProgram} ${outputProgram} ${errorPath}" ${port}`;
     }
     // Send a command to the terminal (as text)
     terminal.sendText(command);
