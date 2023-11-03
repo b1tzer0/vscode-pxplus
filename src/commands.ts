@@ -16,6 +16,9 @@ export function runCompiler(context: vscode.ExtensionContext) {
 
     const pxplusPath = normalizeToDoubleBackslash(getConfiguration<string>('pxplusDirectory.path', ''));
     const compilerPath = normalizeToSingleBackslash(getConfiguration<string>('pxplusDirectory.compiler', ''));
+    const host = normalizeToSingleBackslash(getConfiguration<string>('windx.server', ''));
+    const port = normalizeToSingleBackslash(getConfiguration<string>('windx.port', ''));
+    const iniPath = normalizeToSingleBackslash(getConfiguration<string>('windx.ini', ''));
     const isWindx = getConfiguration<boolean>('windx.client', false);
 
     let sourceProgram = documentFileName;
@@ -39,8 +42,14 @@ export function runCompiler(context: vscode.ExtensionContext) {
     // Bring the terminal forward
     terminal.show();
 
-    // Send a command to the terminal (as text)
+    // Build command for non-WindX
     const command = `& "${pxplusPath}" "${compilerPath}" -arg "${sourceProgram}" "${outputProgram}" "${errorPath}"`;
+    
+    // Build command for WindX
+    if (isWindx) {
+        const command = `& "${pxplusPath}" "${iniPath}" "*ntslave -id=%username% -arg" "${host}" "${compilerPath} -arg "${sourceProgram}" "${outputProgram}" "${errorPath}"" "${port}"`;
+    }
+    // Send a command to the terminal (as text)
     terminal.sendText(command);
 }
 

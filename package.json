@@ -89,6 +89,24 @@
                     "description": "Compile errors log directory",
                     "default": "",
                     "scope": "window"
+                },
+                "pxplus.windx.server": {
+                    "type": "string",
+                    "description": "Servername or IP",
+                    "default": "",
+                    "scope": "window"
+                },
+                "pxplus.windx.port": {
+                    "type": "string",
+                    "description": "Server port",
+                    "default": "",
+                    "scope": "window"
+                },
+                "pxplus.windx.ini": {
+                    "type": "string",
+                    "description": "Full path of ini file",
+                    "default": "",
+                    "scope": "window"
                 }
             }
         },
