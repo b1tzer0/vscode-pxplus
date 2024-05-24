@@ -2,115 +2,157 @@
     "name": "pxplus",
     "displayName": "pxplus",
     "description": "PXPlus Language Extension for VSCode",
-    "version": "0.0.3",
+    "version": "0.0.6",
     "publisher": "b1tzer0",
     "author": {
         "email": "b1t_zer0@hotmail.com",
         "name": "Rick Mathers"
     },
     "contributors": [],
-    "keywords": ["pxplus"],
+    "keywords": [
+        "pxplus"
+    ],
     "engines": {
-        "vscode": "^1.54.0"
+        "vscode": "^1.83.1"
     },
+    "activationEvents": [
+        "onStartupFinished"
+    ],
     "categories": [
         "Programming Languages"
     ],
     "main": "./out/extension.js",
-    "activationEvents": [
-        "onLanguage:pxplus"
-    ],
     "contributes": {
-        "languages": [{
-            "id": "pxplus",
-            "extensions": [".pvx",".pvc",".pvs",".pvt",".pvp"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "pxplus",
-            "scopeName": "source.pxplus",
-            "path": "./syntaxes/pxplus.tmLanguage.json"
-        }],
+        "languages": [
+            {
+                "id": "pxplus",
+                "extensions": [
+                    ".pvx",
+                    ".pvc",
+                    ".pvs",
+                    ".pvt",
+                    ".pvp",
+                    ".pxprg"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "pxplus",
+                "scopeName": "source.pxplus",
+                "path": "./syntaxes/pxplus.tmLanguage.json"
+            }
+        ],
         "snippets": [
             {
-              "language": "pxplus",
-              "path": "./snippets/pxplus.code-snippets"
+                "language": "pxplus",
+                "path": "./snippets/pxplus.code-snippets"
             }
-          ],
-          "configuration":{
-              "title": "PXPlus Configuration",
-              "properties": {
-                  "pxplus.suggest.basic":{
-                        "type":"boolean",
-                        "default": true,
-                        "description": "Enable basic hover tips and signature helpers."
-                  },
-                  "pxplus.workingDirectory.programs":{
-                    "type":"string",
-                    "description": "Working Directory for you programs",
-                    "default":"C:\\Dev\\Bin\\Programs",
-                    "scope":"window"
-                  },
-                  "pxplus.workingDirectory.tools":{
-                    "type":"string",
-                    "description": "Working Directory for you tools",
-                    "default":"C:\\Dev\\Tools",
-                    "scope":"window"
-                  },
-                  "pxplus.commands.cpl":{
-                    "type":"string",
-                    "description": "Compile Command - use %f for current file.",
-                    "default":"",
-                    "scope":"window"
-                  },
-                  "pxplus.commands.lst":{
-                    "type":"string",
-                    "description": "List Command - use %f for current file.",
-                    "default":"",
-                    "scope":"window"
-                  }
-              }
-          },
-          "commands":[{
+        ],
+        "configuration": {
+            "title": "PXPlus Configuration",
+            "properties": {
+                "pxplus.suggest.basic": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable basic hover tips and signature helpers."
+                },           
+                "pxplus.windx.client": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Windx"
+                },
+                "pxplus.pxplusDirectory.path": {
+                    "type": "string",
+                    "description": "Path to pxplus.exe (In case of Windx, path to pxplus.exe and servername etc.)",
+                    "default": "",
+                    "scope": "window"
+                },
+                "pxplus.pxplusDirectory.compiler": {
+                    "type": "string",
+                    "description": "Path to the compiler program",
+                    "default": "",
+                    "scope": "window"
+                },
+                "pxplus.workingDirectory.source": {
+                    "type": "string",
+                    "description": "Source file directory (Only used for Windx)",
+                    "default": "",
+                    "scope": "window"
+                },
+                "pxplus.workingDirectory.output": {
+                    "type": "string",
+                    "description": "Compiled program output directory, use %f for current directory.",
+                    "default": "",
+                    "scope": "window"
+                },
+                "pxplus.workingDirectory.errors": {
+                    "type": "string",
+                    "description": "Compile errors log directory, use %f for current directory.",
+                    "default": "",
+                    "scope": "window"
+                },
+                "pxplus.windx.server": {
+                    "type": "string",
+                    "description": "Servername or IP",
+                    "default": "",
+                    "scope": "window"
+                },
+                "pxplus.windx.port": {
+                    "type": "string",
+                    "description": "Server port",
+                    "default": "",
+                    "scope": "window"
+                },
+                "pxplus.windx.ini": {
+                    "type": "string",
+                    "description": "Full path of ini file",
+                    "default": "",
+                    "scope": "window"
+                }
+            }
+        },
+        "commands": [
+            {
                 "category": "PxPlus",
                 "command": "pxplus.cpl",
                 "title": "Compile"
-            },
-            {
-                "category": "PxPlus",
-                "command": "pxplus.lst",
-                "title": "List"
-            }]
+            }
+        ]
     },
     "repository": {
         "type": "git",
         "url": "https://github.com/b1tzer0/vscode-pxplus.git"
     },
     "scripts": {
-		"vscode:prepublish": "yarn run package",
-		"compile": "webpack",
-		"watch": "webpack --watch",
-		"package": "webpack --mode production --devtool hidden-source-map",
-		"test-compile": "tsc -p ./",
-		"test-watch": "tsc -watch -p ./",
-		"pretest": "yarn run test-compile && yarn run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/vscode": "^1.54.0",
-		"@types/glob": "^7.1.3",
-		"@types/mocha": "^8.0.4",
-		"@types/node": "^12.11.7",
-		"eslint": "^7.19.0",
-		"@typescript-eslint/eslint-plugin": "^4.14.1",
-		"@typescript-eslint/parser": "^4.14.1",
-		"glob": "^7.1.6",
-		"mocha": "^8.2.1",
-		"typescript": "^4.1.3",
-		"vscode-test": "^1.5.0",
-		"ts-loader": "^8.0.14",
-		"webpack": "^5.19.0",
-		"webpack-cli": "^4.4.0"
-	}
+        "vscode:prepublish": "yarn run package",
+        "compile": "webpack",
+        "watch": "webpack --watch",
+        "package": "webpack --mode production --devtool hidden-source-map",
+        "test-compile": "tsc -p ./",
+        "test-watch": "tsc -watch -p ./",
+        "pretest": "yarn run test-compile && yarn run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/glob": "^8.1.0",
+        "@types/mocha": "^10.0.3",
+        "@types/node": "^20.8.8",
+        "@typescript-eslint/eslint-plugin": "^6.9.0",
+        "@typescript-eslint/parser": "^6.9.0",
+        "eslint": "^8.52.0",
+        "glob": "^10.3.10",
+        "mocha": "^10.2.0",
+        "ts-loader": "^9.5.0",
+        "typescript": "^5.2.2",
+        "webpack": "^5.89.0",
+        "webpack-cli": "^5.1.4"
+    },
+    "dependencies": {
+        "@types/vscode": "^1.83.1",
+        "@vscode/test-electron": "^2.3.6",
+        "@vscode/vsce": "^2.21.1"
+    }
 }
